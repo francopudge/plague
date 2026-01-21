@@ -10,12 +10,14 @@
             margin: 0;
             background-color: #f0f0f0;
             min-height: 100vh;
+            /* Menghindari konten terpotong oleh bar bawah */
+            padding-bottom: 70px; 
         }
 
-        /* --- BAR ATAS --- */
+        /* --- BAR ATAS (Responsif) --- */
         .kotak-atas {
             width: 100%;
-            height: 60px;
+            min-height: 60px;
             background-color: #8B0000;
             position: fixed;
             top: 0;
@@ -23,19 +25,18 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 15px;
+            padding: 5px 15px;
             box-sizing: border-box;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        /* Container Ikon agar Teratur */
         .icon-group {
             display: flex;
             align-items: center;
+            flex-wrap: wrap; /* Agar ikon turun ke bawah jika layar terlalu sempit */
             gap: 10px;
-            flex: 1; /* Mengambil ruang yang tersedia */
-            overflow: hidden;
+            max-width: 80%; /* Memberi ruang untuk tombol musik */
         }
 
         .icon-link {
@@ -43,81 +44,81 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            /* Membuat area klik yang seragam */
             width: 40px; 
             height: 40px;
         }
 
-        /* --- PENGATURAN IKON AGAR SAMA RATA --- */
         .icon-size {
             width: 100%;
             height: 100%;
-            /* 'contain' memastikan gambar tidak gepeng & tetap dalam kotak */
-            object-fit: contain; 
+            object-fit: contain;
             transition: transform 0.2s ease;
         }
 
         .icon-link:hover .icon-size {
-            transform: scale(1.2);
-        }
-
-        /* Tombol Musik di Kanan */
-        .music-container {
-            margin-left: 10px;
-        }
-
-        #musicBtn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            display: flex;
-            outline: none;
+            transform: scale(1.1);
         }
 
         /* --- KONTEN UTAMA --- */
         .konten {
-            padding: 100px 20px;
+            padding: 100px 20px 40px 20px;
             text-align: center;
             color: #333;
         }
 
-        /* --- BAR BAWAH & HOME --- */
+        /* --- BAR BAWAH (Responsif) --- */
         .kotak-bawah {
             width: 100%;
-            height: 50px;
+            min-height: 60px;
             background-color: #8B0000;
             position: fixed;
             bottom: 0;
             left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 15px;
+            box-sizing: border-box;
             z-index: 1000;
         }
 
-        .home-bottom {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+        .group-spesial-kiri {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        /* --- RESPONSIF HP --- */
+        /* --- MEDIA QUERIES UNTUK HP --- */
         @media (max-width: 600px) {
-            .kotak-atas {
-                height: 55px;
-                padding: 0 10px;
-            }
-
-            .icon-group {
-                gap: 5px; /* Jarak lebih rapat di HP */
-            }
-
             .icon-link {
-                width: 32px; /* Ukuran lebih kecil untuk layar HP */
-                height: 32px;
+                width: 30px; /* Mengecilkan ikon sedikit di HP */
+                height: 30px;
+            }
+            
+            .kotak-atas, .kotak-bawah {
+                padding: 5px 10px;
             }
 
-            .konten h1 {
+            .icon-group, .group-spesial-kiri {
+                gap: 5px;
+            }
+
+            h1 {
                 font-size: 1.5rem;
+            }
+
+            .music-container img {
+                width: 30px !important;
+                height: 30px !important;
+            }
+        }
+
+        /* Untuk layar sangat kecil (di bawah 360px) */
+        @media (max-width: 360px) {
+            .icon-link {
+                width: 25px;
+                height: 25px;
             }
         }
     </style>
@@ -126,17 +127,17 @@
 
     <div class="kotak-atas">
         <div class="icon-group">
-            <a href="home.html" class="icon-link"><img src="bakteri.png" alt="Bakteri" class="icon-size"></a>
-            <a href="home.html" class="icon-link"><img src="virus.png" alt="Virus" class="icon-size"></a>
-            <a href="home.html" class="icon-link"><img src="fungus.png" alt="Fungus" class="icon-size"></a>
-            <a href="home.html" class="icon-link"><img src="parasit.png" alt="Parasit" class="icon-size"></a>
-            <a href="home.html" class="icon-link"><img src="prion.png" alt="Prion" class="icon-size"></a>
-            <a href="home.html" class="icon-link"><img src="nano.png" alt="Nano" class="icon-size"></a>
-            <a href="home.html" class="icon-link"><img src="bio.png" alt="Bio" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="bakteri.png" alt="Bakteri" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="virus.png" alt="Virus" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="fungus.png" alt="Fungus" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="parasit.png" alt="Parasit" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="prion.png" alt="Prion" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="nano.png" alt="Nano" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="bio.png" alt="Bio" class="icon-size"></a>
         </div>
 
         <div class="music-container">
-            <button id="musicBtn" onclick="toggleMusic()">
+            <button id="musicBtn" style="background:none; border:none; cursor:pointer; display: flex;" onclick="toggleMusic()">
                 <img id="statusIcon" src="play.png" alt="Play" style="width: 35px; height: 35px; object-fit: contain;">
             </button>
         </div>
@@ -148,11 +149,17 @@
 
     <div class="konten">
         <h1>Death Note Player</h1>
-        <p>Semua ikon mikroba sekarang memiliki ukuran kotak yang identik (Sama Rata).</p>
-        <p>Tampilan sudah otomatis menyesuaikan saat dibuka di HP.</p>
+        <p>Tampilan sudah dioptimalkan untuk layar HP. Ikon akan menyesuaikan ukuran dan posisi secara otomatis.</p>
     </div>
 
     <div class="kotak-bawah">
+        <div class="group-spesial-kiri">
+            <a href="#" class="icon-link"><img src="worm.png" alt="Worm" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="necroa.png" alt="Necroa" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="simian.png" alt="Simian" class="icon-size"></a>
+            <a href="#" class="icon-link"><img src="shadow.png" alt="Shadow" class="icon-size"></a>
+        </div>
+
         <div class="home-bottom">
             <a href="home.html" class="icon-link">
                 <img src="home.png" alt="Home" class="icon-size" style="filter: brightness(0) invert(1);"> 
@@ -173,10 +180,6 @@
                 icon.src = "play.png";
             }
         }
-
-        // Sinkronisasi status ikon jika audio dimainkan melalui sistem
-        audio.onplay = function() { icon.src = "pause.png"; };
-        audio.onpause = function() { icon.src = "play.png"; };
     </script>
 
 </body>
