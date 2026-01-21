@@ -3,70 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Death Note Player - Music Shift</title>
+    <title>Plague Inc Evolved - Mobile Optimized</title>
     <style>
+        /* Reset & Base Style */
+        * { box-sizing: border-box; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            /* Background dunia.png tampil bersih tanpa overlay hitam */
             background: url('dunia.png') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
-            padding-bottom: 80px; 
-            color: white; 
+            color: white;
+            overflow-x: hidden;
         }
 
+        /* Nav Bar Common Styles */
         .nav-bar {
             width: 100%;
-            height: 70px;
-            background-color: #8B0000;
+            height: 65px;
+            background-color: rgba(139, 0, 0, 0.9); /* Sedikit transparan agar modern */
             position: fixed;
             left: 0;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 15px; 
-            box-sizing: border-box;
+            padding: 0 10px;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px); /* Efek blur pada bar */
         }
 
-        .kotak-atas { top: 0; }
-        .kotak-bawah { bottom: 0; }
+        .kotak-atas { top: 0; border-bottom: 2px solid #600000; }
+        .kotak-bawah { bottom: 0; border-top: 2px solid #600000; }
 
+        /* Icon Group Container */
         .icon-group {
             display: flex;
             align-items: center;
-            flex-wrap: nowrap;
-            gap: 10px;
+            gap: 15px;
             overflow-x: auto;
             flex: 1;
+            padding: 5px 10px;
+            scrollbar-width: none; /* Hide scrollbar Firefox */
         }
 
-        .right-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            flex-shrink: 0;
+        .icon-group::-webkit-scrollbar {
+            display: none; /* Hide scrollbar Chrome/Safari */
         }
 
-        #section-music {
-            width: 30px; 
-            margin-right: 2px;
-        }
-
-        #section-home {
-            width: 50px; 
-        }
-
+        /* Icon Styling */
         .icon-link {
+            flex: 0 0 auto; /* Mencegah ikon gepeng */
+            width: 35px;
+            height: 35px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px; 
-            height: 40px;
-            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .icon-link:active {
+            transform: scale(0.9); /* Feedback saat ditekan */
         }
 
         .icon-size {
@@ -75,45 +70,67 @@
             object-fit: contain;
         }
 
+        /* Right Section Buttons */
+        .right-section {
+            padding-left: 10px;
+            border-left: 1px solid rgba(255,255,255,0.2);
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+
         #musicBtn {
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 5px;
         }
 
+        /* Content Area */
         .konten {
-            position: relative;
-            padding: 150px 20px 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 80px 25px; /* Memberi ruang untuk navbar */
             text-align: center;
-            /* Tetap menggunakan shadow pada teks agar terbaca jika background terang */
-            text-shadow: 3px 3px 15px rgba(0,0,0,1);
+            box-sizing: border-box;
         }
 
         .konten h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: bold;
+            font-size: clamp(1.5rem, 6vw, 2.5rem); /* Responsive font size */
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8), 0 0 20px rgba(139,0,0,0.5);
         }
 
         .konten p {
-            font-size: 1.5em;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin: 0;
+            opacity: 0.9;
+            background: rgba(0,0,0,0.4);
+            padding: 5px 20px;
+            border-radius: 20px;
         }
 
-        @media (max-width: 600px) {
-            .nav-bar { height: 60px; }
-            #section-music { margin-right: -8px; }
-            #statusIcon { width: 35px !important; height: 35px !important; }
-            .konten h1 { font-size: 1.8em; }
+        /* Home Icon Specific */
+        .home-icon {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Animasi sederhana untuk tombol Play */
+        #statusIcon {
+            transition: all 0.3s ease;
         }
     </style>
 </head>
 <body>
 
-    <div class="nav-bar kotak-atas">
+    <nav class="nav-bar kotak-atas">
         <div class="icon-group">
             <a href="#" class="icon-link"><img src="bakteri.png" alt="Bakteri" class="icon-size"></a>
             <a href="#" class="icon-link"><img src="virus.png" alt="Virus" class="icon-size"></a>
@@ -124,23 +141,23 @@
             <a href="#" class="icon-link"><img src="bio.png" alt="Bio" class="icon-size"></a>
         </div>
 
-        <div class="right-section" id="section-music">
-            <button id="musicBtn" onclick="toggleMusic()">
-                <img id="statusIcon" src="play.png" alt="Play" style="width: 40px; height: 40px; object-fit: contain;">
+        <div class="right-section">
+            <button id="musicBtn" onclick="toggleMusic()" aria-label="Toggle Music">
+                <img id="statusIcon" src="play.png" alt="Play" style="width: 35px; height: 35px; object-fit: contain;">
             </button>
         </div>
-    </div>
+    </nav>
 
     <audio id="myAudio" loop>
         <source src="Death Note Opening 1 completo full HD.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="konten">
+    <main class="konten">
         <h1>Selamat Datang di Website Plague Inc Evolved</h1>
         <p>Ridwan Kristiadi</p>
-    </div>
+    </main>
 
-    <div class="nav-bar kotak-bawah">
+    <nav class="nav-bar kotak-bawah">
         <div class="icon-group">
             <a href="#" class="icon-link"><img src="worm.png" alt="Worm" class="icon-size"></a>
             <a href="#" class="icon-link"><img src="necroa.png" alt="Necroa" class="icon-size"></a>
@@ -148,24 +165,26 @@
             <a href="#" class="icon-link"><img src="shadow.png" alt="Shadow" class="icon-size"></a>
         </div>
 
-        <div class="right-section" id="section-home">
+        <div class="right-section">
             <a href="home.html" class="icon-link">
-                <img src="home.png" alt="Home" class="icon-size" style="filter: brightness(0) invert(1);"> 
+                <img src="home.png" alt="Home" class="home-icon"> 
             </a>
         </div>
-    </div>
+    </nav>
 
     <script>
-        var audio = document.getElementById("myAudio");
-        var icon = document.getElementById("statusIcon");
+        const audio = document.getElementById("myAudio");
+        const icon = document.getElementById("statusIcon");
 
         function toggleMusic() {
             if (audio.paused) {
                 audio.play();
                 icon.src = "pause.png";
+                icon.style.filter = "drop-shadow(0 0 5px white)";
             } else {
                 audio.pause();
                 icon.src = "play.png";
+                icon.style.filter = "none";
             }
         }
     </script>
