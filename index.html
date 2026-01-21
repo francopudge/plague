@@ -3,129 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Death Note Player - Microbial Edition</title>
+    <title>Death Note Player - Music Shift</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             background-color: #f0f0f0;
             min-height: 100vh;
-            /* Menghindari konten terpotong oleh bar bawah */
-            padding-bottom: 70px; 
+            padding-bottom: 80px; 
         }
 
-        /* --- BAR ATAS (Responsif) --- */
-        .kotak-atas {
+        .nav-bar {
             width: 100%;
-            min-height: 60px;
+            height: 70px;
             background-color: #8B0000;
             position: fixed;
-            top: 0;
             left: 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 5px 15px;
+            padding: 0 15px; 
             box-sizing: border-box;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
+        .kotak-atas { top: 0; }
+        .kotak-bawah { bottom: 0; }
+
         .icon-group {
             display: flex;
             align-items: center;
-            flex-wrap: wrap; /* Agar ikon turun ke bawah jika layar terlalu sempit */
+            flex-wrap: nowrap;
             gap: 10px;
-            max-width: 80%; /* Memberi ruang untuk tombol musik */
+            overflow-x: auto;
+            flex: 1;
+        }
+
+        /* Gaya umum untuk bagian kanan */
+        .right-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        /* KHUSUS ATAS: Menggeser Play/Pause lebih ke kanan */
+        #section-music {
+            width: 30px; /* Diperkecil lebarnya agar lebih mepet ke kanan */
+            margin-right: 2px; /* Margin negatif untuk menariknya lebih keluar */
+        }
+
+        /* KHUSUS BAWAH: Tombol Home tetap stabil */
+        #section-home {
+            width: 50px; 
         }
 
         .icon-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
             width: 40px; 
             height: 40px;
+            text-decoration: none;
         }
 
         .icon-size {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            transition: transform 0.2s ease;
         }
 
-        .icon-link:hover .icon-size {
-            transform: scale(1.1);
+        #musicBtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* --- KONTEN UTAMA --- */
         .konten {
-            padding: 100px 20px 40px 20px;
+            padding: 120px 20px 40px 20px;
             text-align: center;
             color: #333;
         }
 
-        /* --- BAR BAWAH (Responsif) --- */
-        .kotak-bawah {
-            width: 100%;
-            min-height: 60px;
-            background-color: #8B0000;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 5px 15px;
-            box-sizing: border-box;
-            z-index: 1000;
-        }
-
-        .group-spesial-kiri {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        /* --- MEDIA QUERIES UNTUK HP --- */
         @media (max-width: 600px) {
-            .icon-link {
-                width: 30px; /* Mengecilkan ikon sedikit di HP */
-                height: 30px;
-            }
-            
-            .kotak-atas, .kotak-bawah {
-                padding: 5px 10px;
-            }
-
-            .icon-group, .group-spesial-kiri {
-                gap: 5px;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .music-container img {
-                width: 30px !important;
-                height: 30px !important;
-            }
-        }
-
-        /* Untuk layar sangat kecil (di bawah 360px) */
-        @media (max-width: 360px) {
-            .icon-link {
-                width: 25px;
-                height: 25px;
-            }
+            .nav-bar { height: 60px; }
+            #section-music { margin-right: -8px; } /* Lebih mepet lagi di HP */
+            #statusIcon { width: 35px !important; height: 35px !important; }
         }
     </style>
 </head>
 <body>
 
-    <div class="kotak-atas">
+    <div class="nav-bar kotak-atas">
         <div class="icon-group">
             <a href="#" class="icon-link"><img src="bakteri.png" alt="Bakteri" class="icon-size"></a>
             <a href="#" class="icon-link"><img src="virus.png" alt="Virus" class="icon-size"></a>
@@ -136,9 +111,9 @@
             <a href="#" class="icon-link"><img src="bio.png" alt="Bio" class="icon-size"></a>
         </div>
 
-        <div class="music-container">
-            <button id="musicBtn" style="background:none; border:none; cursor:pointer; display: flex;" onclick="toggleMusic()">
-                <img id="statusIcon" src="play.png" alt="Play" style="width: 35px; height: 35px; object-fit: contain;">
+        <div class="right-section" id="section-music">
+            <button id="musicBtn" onclick="toggleMusic()">
+                <img id="statusIcon" src="play.png" alt="Play" style="width: 40px; height: 40px; object-fit: contain;">
             </button>
         </div>
     </div>
@@ -149,18 +124,18 @@
 
     <div class="konten">
         <h1>Death Note Player</h1>
-        <p>Tampilan sudah dioptimalkan untuk layar HP. Ikon akan menyesuaikan ukuran dan posisi secara otomatis.</p>
+        <p>Hanya tombol <b>Play/Pause</b> yang digeser lebih ke kanan.</p>
     </div>
 
-    <div class="kotak-bawah">
-        <div class="group-spesial-kiri">
+    <div class="nav-bar kotak-bawah">
+        <div class="icon-group">
             <a href="#" class="icon-link"><img src="worm.png" alt="Worm" class="icon-size"></a>
             <a href="#" class="icon-link"><img src="necroa.png" alt="Necroa" class="icon-size"></a>
             <a href="#" class="icon-link"><img src="simian.png" alt="Simian" class="icon-size"></a>
             <a href="#" class="icon-link"><img src="shadow.png" alt="Shadow" class="icon-size"></a>
         </div>
 
-        <div class="home-bottom">
+        <div class="right-section" id="section-home">
             <a href="home.html" class="icon-link">
                 <img src="home.png" alt="Home" class="icon-size" style="filter: brightness(0) invert(1);"> 
             </a>
@@ -181,6 +156,5 @@
             }
         }
     </script>
-
 </body>
 </html>
