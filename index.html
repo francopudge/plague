@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Note Player</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 2000px;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Bar Merah Tua */
+        .kotak {
+            width: 100%;
+            height: 60px;
+            background-color: #8B0000;
+            position: fixed;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .kotak-atas { top: 0; }
+        .kotak-bawah { bottom: 0; }
+
+        /* Container Tombol Musik - Penyesuaian Posisi untuk HP */
+        .music-container {
+            position: fixed;
+            top: 5px; /* Sedikit lebih ke atas agar pas di tengah bar 60px */
+            right: 15px;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            height: 50px; /* Menjaga area tetap stabil */
+        }
+
+        /* Tombol Utama */
+        #musicBtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px; /* Area klik lebih luas untuk jari di HP */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s active; /* Efek tekan di HP */
+            outline: none;
+        }
+
+        /* Ukuran Gambar - Dipaksa Sama Persis */
+        #musicBtn img {
+            width: 45px;  /* Ukuran seragam */
+            height: 45px; /* Tinggi seragam agar tidak loncat */
+            object-fit: contain; /* Memastikan gambar tidak gepeng */
+            display: block;
+        }
+
+        /* Konten */
+        .konten {
+            padding: 100px 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Optimasi untuk HP (Touch Screen) */
+        @media (max-width: 600px) {
+            #musicBtn img {
+                width: 40px;
+                height: 40px;
+            }
+            .music-container {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kotak kotak-atas"></div>
+
+    <div class="music-container">
+        <button id="musicBtn" onclick="toggleMusic()">
+            <img id="statusIcon" src="play.png" alt="Play">
+        </button>
+    </div>
+
+    <audio id="myAudio" loop>
+        <source src="Death Note Opening 1 completo full HD.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="konten">
+        <h1>Death Note Player</h1>
+        <p>Klik ikon di pojok kanan atas bar merah.</p>
+        <p>Ukuran tombol sudah disamakan dan pas untuk HP.</p>
+    </div>
+
+    <div class="kotak kotak-bawah"></div>
+
+    <script>
+        var audio = document.getElementById("myAudio");
+        var icon = document.getElementById("statusIcon");
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                icon.src = "pause.png";
+                icon.alt = "Pause";
+            } else {
+                audio.pause();
+                icon.src = "play.png";
+                icon.alt = "Play";
+            }
+        }
+
+        // Memastikan status gambar benar jika audio dipicu sistem
+        audio.onplay = function() { icon.src = "pause.png"; };
+        audio.onpause = function() { icon.src = "play.png"; };
+    </script>
+
+</body>
+</html>
