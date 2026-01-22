@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plague Inc - Ridwan Kristiadi</title>
+    <title>Plague Inc - Nano-Virus</title>
+    <link rel="icon" type="image/png" href="plague.png">
     <style>
         /* Reset & Base Style */
         * { box-sizing: border-box; }
@@ -11,7 +12,6 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            /* BACKGROUND DIKEMBALIKAN DI SINI */
             background: #000 url('dunia.png') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -60,8 +60,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.05); }
         }
 
         .progress-bar-container {
@@ -157,6 +157,43 @@
             height: 30px;
             filter: brightness(0) invert(1);
         }
+
+        /* --- ISI KONTEN BAKTERI --- */
+        .main-content {
+            margin: 80px auto; /* Memberi ruang agar tidak tertutup nav */
+            max-width: 600px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 2px solid #8b0000;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .bakteri-main-img {
+            width: 140px;
+            filter: drop-shadow(0 0 15px #ff0000);
+            animation: pulse 2s infinite;
+            margin-bottom: 15px;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            border-top: 1px solid #444;
+            border-bottom: 1px solid #444;
+            padding: 15px 0;
+        }
+
+        .skill-box {
+            text-align: left;
+            background: rgba(139, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #ff0000;
+        }
     </style>
 </head>
 <body>
@@ -188,6 +225,35 @@
             </button>
         </div>
     </nav>
+
+    <main class="main-content">
+        <img src="nano1.png" alt="Bakteri" class="bakteri-main-img">
+        <h1 style="color: #ff0000; letter-spacing: 5px; margin: 0;">NANO-VIRUS</h1>
+        <p style="color: #888; font-size: 0.9rem;">Pathogen Class: Standard</p>
+
+        <div class="stat-container">
+            <div>
+                <div style="font-size: 0.75rem; color: #aaa;">KESULITAN</div>
+                <div style="font-size: 1.4rem; color: #ff3333; font-weight: bold;">7 / 10</div>
+            </div>
+            <div>
+                <div style="font-size: 0.75rem; color: #aaa;">AWAL GAME</div>
+                <div style="font-size: 1.4rem; color: #ff3333; font-weight: bold;">9 / 10</div>
+            </div>
+        </div>
+
+        <div class="skill-box">
+            <h3 style="color: #ff0000; margin-top: 0; font-size: 1.1rem;">🧬 Radical Elements Stabilised </h3>
+            <p style="font-size: 0.9rem; line-height: 1.5; color: #ddd; margin-bottom: 0;">
+                <span style="color: #fff; font-weight: bold;"> Radical Elements Stabilised</span> adalah sebuah keheningan yang dipaksakan. Saat kode genetik Nano-Virus mulai bergejolak dan memicu alarm peringatan global, protokol ini bekerja seperti jangkar yang dijatuhkan ke dalam lautan kekacauan sub-atomik.
+
+Ia adalah seni memanipulasi ketidakpastian. Di saat molekul-molekul radikal mulai tidak stabil dan mengancam untuk mengekspos struktur inti patogen, elemen-elemen ini dipaksa masuk ke dalam status stasis yang dingin dan presisi. Jika dunia menganggap mereka bisa memetakan kehancuran ini melalui mikroskop elektron, mereka akan mendapati bahwa targetnya telah membeku dalam frekuensi yang tak terjangkau.
+
+Dengan aktifnya protokol ini, laju dekomposisi data melambat. Upaya manusia untuk merakit "obat" (cure) menjadi sebuah upaya sia-sia untuk menyatukan pecahan kaca di tengah badai. Setiap kali mereka merasa hampir menemukan pola serangan, Radical Elements Stabilised menenangkan fluktuasi virus tersebut, membuatnya tampak seperti hantu yang tenang namun mematikan—tidak terdeteksi oleh algoritma pengejaran, namun terus meluas dalam kesunyian.
+
+Ini adalah pengkhianatan terhadap hukum fisika biologis. Kita tidak lagi hanya menyerang sel; kita sedang menjinakkan energi liar di dalam virus itu sendiri agar ia tetap tersembunyi, memberi waktu bagi kegelapan untuk menyelimuti setiap sinapsis manusia sebelum mereka sempat menyalakan lampu peringatan terakhir.
+        </div>
+    </main>
 
     <audio id="myAudio" loop>
         <source src="Death Note Opening 1 completo full HD.mp3" type="audio/mpeg">
