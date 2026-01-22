@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plague Inc - Ridwan Kristiadi</title>
+    <title>Plague Inc - Shadow Plague</title>
+    <link rel="icon" type="image/png" href="plague.png">
     <style>
         /* Reset & Base Style */
         * { box-sizing: border-box; }
@@ -11,7 +12,6 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            /* BACKGROUND DIKEMBALIKAN DI SINI */
             background: #000 url('dunia.png') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -19,7 +19,7 @@
             overflow-x: hidden;
         }
 
-        /* --- LOADING SCREEN STYLE --- */
+        /* --- LOADING SCREEN STYLE (TETAP MERAH) --- */
         #loader-wrapper {
             position: fixed;
             top: 0;
@@ -60,8 +60,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.05); }
         }
 
         .progress-bar-container {
@@ -157,6 +157,43 @@
             height: 30px;
             filter: brightness(0) invert(1);
         }
+
+        /* --- ISI KONTEN (TEMA UNGU) --- */
+        .main-content {
+            margin: 80px auto; 
+            max-width: 600px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 2px solid #4b0082; /* Border Ungu */
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(75, 0, 130, 0.5);
+        }
+
+        .shadow-main-img {
+            width: 140px;
+            filter: drop-shadow(0 0 15px #8a2be2); /* Glow Ungu */
+            animation: pulse 2s infinite;
+            margin-bottom: 15px;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+        }
+
+        .skill-box {
+            text-align: left;
+            background: rgba(138, 43, 226, 0.1); /* Background Ungu Tipis */
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #8a2be2; /* Garis Samping Ungu */
+        }
     </style>
 </head>
 <body>
@@ -188,6 +225,33 @@
             </button>
         </div>
     </nav>
+
+    <main class="main-content">
+        <img src="shadow1.png" alt="Shadow Plague" class="shadow-main-img">
+        <h1 style="color: #9932cc; letter-spacing: 5px; margin: 0;">SHADOW PLAGUE</h1>
+        <p style="color: #888; font-size: 0.9rem;">Pathogen Class: Special</p>
+
+        <div class="stat-container">
+            <div>
+                <div style="font-size: 0.75rem; color: #aaa;">KESULITAN</div>
+                <div style="font-size: 1.4rem; color: #9932cc; font-weight: bold;">8 / 10</div>
+            </div>
+            <div>
+                <div style="font-size: 0.75rem; color: #aaa;">AWAL GAME</div>
+                <div style="font-size: 1.4rem; color: #9932cc; font-weight: bold;">4 / 10</div>
+            </div>
+        </div>
+
+        <div class="skill-box">
+            <h3 style="color: #ba55d3; margin-top: 0; font-size: 1.1rem;">🧬 Blood Rage</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5; color: #ddd; margin-bottom: 0;">
+                <span style="color: #fff; font-weight: bold;">Blood Rage</span> Ketika amarah kuno meluap, diplomasi dan sains menjadi tidak relevan. Blood Rage bukan lagi tentang penyebaran yang sunyi, melainkan deklarasi perang terbuka melawan kemanusiaan. Di bawah langit yang memerah, sang predator tidak lagi bersembunyi di balik bayangan—ia menjadi bayangan itu sendiri yang mencabik-cabik jantung pertahanan dunia."
+
+"Setiap tetes darah yang tumpah bukan hanya sekadar santapan, melainkan bahan bakar bagi kekuatan yang tak terbendung. Laboratorium-laboratorium CDC yang mencoba mencari obat kini menjadi rumah jagal, dan pasukan militer yang dikirim untuk menahan wabah hanya berakhir sebagai tumpukan tulang. Keberadaan manusia kini menyusut, bukan karena infeksi mikroskopis, melainkan karena mereka telah turun kasta menjadi mangsa dalam rantai makanan yang baru."
+
+"Dunia akan belajar satu hal dengan sangat menyakitkan: bahwa di hadapan kemurkaan sang vampir, keberanian manusia hanyalah ilusi yang rapuh. Saat Blood Rage mencapai puncaknya, teriakan terakhir peradaban akan tenggelam dalam keheningan malam yang abadi, menyisakan bumi yang hanya dihuni oleh kegelapan dan mereka yang berkuasa di dalamnya."
+        </div>
+    </main>
 
     <audio id="myAudio" loop>
         <source src="Death Note Opening 1 completo full HD.mp3" type="audio/mpeg">
