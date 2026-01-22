@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plague Inc - Ridwan Kristiadi</title>
+    <style>
+        /* Reset & Base Style */
+        * { box-sizing: border-box; }
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* BACKGROUND DIKEMBALIKAN DI SINI */
+            background: #000 url('dunia.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- LOADING SCREEN STYLE --- */
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #2b0000 0%, #000000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .loader-content { text-align: center; }
+
+        .dna-spinner {
+            width: 70px;
+            height: 70px;
+            border: 4px solid rgba(139, 0, 0, 0.2);
+            border-left-color: #ff0000;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .loading-text {
+            color: #ff0000;
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 4px;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px #8b0000;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .progress-bar-container {
+            width: 200px;
+            height: 2px;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 auto;
+            border: 1px solid #444;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+            transition: width 0.2s ease;
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- NAVIGATION STYLE --- */
+        .nav-bar {
+            width: 100%;
+            height: 60px;
+            background-color: rgba(139, 0, 0, 0.95);
+            position: fixed;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .kotak-atas { top: 0; border-bottom: 2px solid #600000; }
+        .kotak-bawah { bottom: 0; border-top: 2px solid #600000; }
+
+        .icon-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow-x: auto;
+            flex: 1;
+            padding: 5px 0;
+            scrollbar-width: none;
+        }
+
+        .icon-group::-webkit-scrollbar { display: none; }
+
+        .icon-link {
+            flex: 0 0 auto;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-size {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.2s;
+        }
+
+        .icon-link:active .icon-size { transform: scale(0.8); }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
+
+        #musicBtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+        }
+
+        .home-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader-wrapper">
+        <div class="loader-content">
+            <div class="dna-spinner"></div>
+            <h2 class="loading-text">Loading...</h2>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-bar kotak-atas">
+        <div class="icon-group">
+            <a href="bakteri.html" class="icon-link"><img src="bakteri.png" alt="Bakteri" class="icon-size"></a>
+            <a href="virus.html" class="icon-link"><img src="virus.png" alt="Virus" class="icon-size"></a>
+            <a href="fungus.html" class="icon-link"><img src="fungus.png" alt="Fungus" class="icon-size"></a>
+            <a href="parasit.html" class="icon-link"><img src="parasit.png" alt="Parasit" class="icon-size"></a>
+            <a href="prion.html" class="icon-link"><img src="prion.png" alt="Prion" class="icon-size"></a>
+            <a href="nano.html" class="icon-link"><img src="nano.png" alt="Nano" class="icon-size"></a>
+            <a href="bio.html" class="icon-link"><img src="bio.png" alt="Bio" class="icon-size"></a>
+        </div>
+
+        <div class="right-section">
+            <button id="musicBtn" onclick="toggleMusic()">
+                <img id="statusIcon" src="play.png" alt="Play" style="width: 30px; height: 30px;">
+            </button>
+        </div>
+    </nav>
+
+    <audio id="myAudio" loop>
+        <source src="Death Note Opening 1 completo full HD.mp3" type="audio/mpeg">
+    </audio>
+
+    <nav class="nav-bar kotak-bawah">
+        <div class="icon-group">
+            <a href="worm.html" class="icon-link"><img src="worm.png" alt="Worm" class="icon-size"></a>
+            <a href="necroa.html" class="icon-link"><img src="necroa.png" alt="Necroa" class="icon-size"></a>
+            <a href="simian.html" class="icon-link"><img src="simian.png" alt="Simian" class="icon-size"></a>
+            <a href="shadow.html" class="icon-link"><img src="shadow.png" alt="Shadow" class="icon-size"></a>
+        </div>
+
+        <div class="right-section">
+            <a href="index.html" class="icon-link">
+                <img src="home.png" alt="Home" class="home-icon"> 
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // SCRIPT LOADING SCREEN
+        window.addEventListener("load", function() {
+            const loader = document.getElementById("loader-wrapper");
+            const progressBar = document.getElementById("progress-bar");
+            let width = 0;
+
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loader.classList.add("loader-hidden");
+                    }, 500);
+                } else {
+                    width += Math.random() * 15; 
+                    if (width > 100) width = 100;
+                    progressBar.style.width = width + "%";
+                }
+            }, 100);
+        });
+
+        // SCRIPT MUSIK
+        const audio = document.getElementById("myAudio");
+        const icon = document.getElementById("statusIcon");
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play().catch(e => console.log("User interaction required"));
+                icon.src = "pause.png";
+                icon.style.filter = "drop-shadow(0 0 5px white)";
+            } else {
+                audio.pause();
+                icon.src = "play.png";
+                icon.style.filter = "none";
+            }
+        }
+    </script>
+</body>
+</html>
