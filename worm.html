@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plague Inc - Ridwan Kristiadi</title>
+    <title>Plague Inc - Neurax Worm</title>
+    <link rel="icon" type="image/png" href="plague.png">
     <style>
         /* Reset & Base Style */
         * { box-sizing: border-box; }
@@ -11,7 +12,6 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            /* BACKGROUND DIKEMBALIKAN DI SINI */
             background: #000 url('dunia.png') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -60,8 +60,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.05); }
         }
 
         .progress-bar-container {
@@ -157,6 +157,43 @@
             height: 30px;
             filter: brightness(0) invert(1);
         }
+
+        /* --- ISI KONTEN (UPDATE OREN) --- */
+        .main-content {
+            margin: 80px auto; 
+            max-width: 600px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 2px solid #ff8c00; /* Border Oranye */
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .bakteri-main-img {
+            width: 140px;
+            filter: drop-shadow(0 0 15px #ff8c00); /* Glow Oranye */
+            animation: pulse 2s infinite;
+            margin-bottom: 15px;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            border-top: 1px solid #444;
+            border-bottom: 1px solid #444;
+            padding: 15px 0;
+        }
+
+        .skill-box {
+            text-align: left;
+            background: rgba(255, 140, 0, 0.1); /* Background Oranye Tipis */
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #ff8c00; /* Garis Samping Oranye */
+        }
     </style>
 </head>
 <body>
@@ -188,6 +225,32 @@
             </button>
         </div>
     </nav>
+
+    <main class="main-content">
+        <img src="worm1.png" alt="Bakteri" class="bakteri-main-img">
+        <h1 style="color: #ff8c00; letter-spacing: 5px; margin: 0;">Neurax Worm</h1>
+        <p style="color: #888; font-size: 0.9rem;">Pathogen Class: Special</p>
+
+        <div class="stat-container">
+            <div>
+                <div style="font-size: 0.75rem; color: #aaa;">KESULITAN</div>
+                <div style="font-size: 1.4rem; color: #ffa500; font-weight: bold;">3 / 10</div>
+            </div>
+            <div>
+                <div style="font-size: 0.75rem; color: #aaa;">AWAL GAME</div>
+                <div style="font-size: 1.4rem; color: #ffa500; font-weight: bold;">4 / 10</div>
+            </div>
+        </div>
+
+        <div class="skill-box">
+            <h3 style="color: #ff8c00; margin-top: 0; font-size: 1.1rem;">🧬 Trojan Planes</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5; color: #ddd; margin-bottom: 0;">
+                <span style="color: #fff; font-weight: bold;">Trojan Planes</span> adalah eksodus kesadaran yang menumpang pada struktur peradaban yang paling rapuh."
+
+"Saat mekanisme pertahanan global—garis perbatasan, karantina, dan kecurigaan—mulai menutup pintu dunia, Neurax Worm melakukan manuver yang tak terduga. Ia menyusup ke dalam kokpit, bukan dengan paksaan fisik, melainkan dengan bisikan halus pada korteks motorik sang pilot. Tangan yang seharusnya menjaga protokol keselamatan kini bergerak di bawah orkestra sang parasit."
+
+"Pesawat-pesawat itu kini terbang sebagai sekoci bagi kehancuran. Mereka mendarat di pulau-pulau terpencil dan benteng-benteng terakhir manusia, bukan membawa bantuan, melainkan membawa penumpang gelap yang akan melipatgandakan dirinya di dalam sunyinya sinapsis penduduk lokal. Langit yang dulu menjadi simbol konektivitas manusia, kini telah bermutasi menjadi jaring laba-laba global tempat sang predator mengirimkan utusannya ke jantung pertahanan terakhir."
+    </main>
 
     <audio id="myAudio" loop>
         <source src="Death Note Opening 1 completo full HD.mp3" type="audio/mpeg">
